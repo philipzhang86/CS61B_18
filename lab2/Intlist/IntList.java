@@ -5,7 +5,7 @@ import java.util.Formatter;
  * with a large number of additional methods.
  *
  * @author P. N. Hilfinger, with some modifications by Josh Hug and melaniecebula
- *         [Do not modify this file.]
+ * [Do not modify this file.]
  */
 public class IntList {
     /**
@@ -29,7 +29,7 @@ public class IntList {
      * A List with null rest, and first = 0.
      */
     public IntList() {
-    /* NOTE: public IntList () { }  would also work. */
+        /* NOTE: public IntList () { }  would also work. */
         this(0, null);
     }
 
@@ -81,12 +81,12 @@ public class IntList {
      */
 
     public static IntList dcatenate(IntList A, IntList B) {
-        IntList c=A;
+        IntList c = A;
 
-        while (c.rest !=null){
-            c=c.rest;
+        while (c.rest != null) {
+            c = c.rest;
         }
-        c.rest=B;
+        c.rest = B;
         return A;
     }
 
@@ -94,55 +94,12 @@ public class IntList {
      * Returns a list consisting of the elements of A followed by the
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
-    public static IntList catenate(IntList A,IntList B) {
+    public static IntList catenate(IntList A, IntList B) {
 
         if (A == null) {
             return new IntList(B.first, B.rest);
         }
         return new IntList(A.first, catenate(A.rest, B));
-    }
-
-
-
-    public int get(int i) {
-        if (i == 0) {
-            return first;
-        }
-        return rest.get(i - 1);
-    }
-
-    public int size() {
-        if (rest == null) {
-            return 1;
-        }
-        return 1 + this.rest.size();//keep asking my rest:what size are you?
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /**
-     * DO NOT MODIFY ANYTHING BELOW THIS LINE! Many of the concepts below here
-     * will be introduced later in the course or feature some form of advanced
-     * trickery which we implemented to help make your life a little easier for
-     * the lab.
-     */
-
-    @Override
-    public int hashCode() {
-        return first;
     }
 
     /**
@@ -165,6 +122,32 @@ public class IntList {
         return result;
     }
 
+    public int get(int i) {
+        if (i == 0) {
+            return first;
+        }
+        return rest.get(i - 1);
+    }
+
+    public int size() {
+        if (rest == null) {
+            return 1;
+        }
+        return 1 + this.rest.size();//keep asking my rest:what size are you?
+    }
+
+    /**
+     * DO NOT MODIFY ANYTHING BELOW THIS LINE! Many of the concepts below here
+     * will be introduced later in the course or feature some form of advanced
+     * trickery which we implemented to help make your life a little easier for
+     * the lab.
+     */
+
+    @Override
+    public int hashCode() {
+        return first;
+    }
+
     /**
      * Returns true iff X is an IntList containing the same sequence of ints
      * as THIS. Cannot handle IntLists with cycles. You are not expected to
@@ -182,10 +165,7 @@ public class IntList {
                 return false;
             }
         }
-        if (p != null || L != null) {
-            return false;
-        }
-        return true;
+        return p == null && L == null;
     }
 
     /**
