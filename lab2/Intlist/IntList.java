@@ -81,17 +81,41 @@ public class IntList {
      */
 
     public static IntList dcatenate(IntList A, IntList B) {
-        //TODO:  fill in method
-        return null;
+        IntList c=A;
+
+        while (c.rest !=null){
+            c=c.rest;
+        }
+        c.rest=B;
+        return A;
     }
 
     /**
      * Returns a list consisting of the elements of A followed by the
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
-    public static IntList catenate(IntList A, IntList B) {
-        //TODO:  fill in method
-        return null;
+    public static IntList catenate(IntList A,IntList B) {
+
+        if (A == null) {
+            return new IntList(B.first, B.rest);
+        }
+        return new IntList(A.first, catenate(A.rest, B));
+    }
+
+
+
+    public int get(int i) {
+        if (i == 0) {
+            return first;
+        }
+        return rest.get(i - 1);
+    }
+
+    public int size() {
+        if (rest == null) {
+            return 1;
+        }
+        return 1 + this.rest.size();//keep asking my rest:what size are you?
     }
 
 

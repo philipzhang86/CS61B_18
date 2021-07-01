@@ -1,6 +1,7 @@
-import static org.junit.Assert.*;
-
+import org.junit.Assert;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class IntListTest {
 
@@ -55,6 +56,7 @@ public class IntListTest {
         IntList exp = IntList.of(1, 2, 3, 4, 5, 6);
         assertEquals(exp, IntList.dcatenate(A, B));
         assertEquals(IntList.of(1, 2, 3, 4, 5, 6), A);
+        System.out.println(A);
     }
 
     @Test
@@ -62,8 +64,65 @@ public class IntListTest {
         IntList A = IntList.of(1, 2, 3);
         IntList B = IntList.of(4, 5, 6);
         IntList exp = IntList.of(1, 2, 3, 4, 5, 6);
+        IntList C=IntList.catenate(A,B); //= (1, 2, 3, 4, 5, 6)
         assertEquals(exp, IntList.catenate(A, B));
         assertEquals(IntList.of(1, 2, 3), A);
+
+
+
     }
 
+    @Test
+    public void test1(){
+        IntList A = IntList.of(1, 2, 3);
+        IntList B = IntList.of(4, 5, 6);
+
+        while (A !=null){
+            System.out.println(A.first);
+            A=A.rest;
+        }
+        while (B !=null){
+            System.out.println(B.first);
+            B=B.rest;
+        }
+
+
+    }
+
+    @Test
+    public void test3(){
+        IntList A = IntList.of(3,2,1);
+        IntList B = IntList.of(6, 5, 4);
+        IntList exp = IntList.of(6,5,4,3,2,1);
+        IntList C=IntList.catenate(B,A);
+       // System.out.println(C.size());
+//        while (C !=null){
+//            System.out.println(C.first);
+//            C=C.rest;
+//        }
+        Assert.assertEquals(exp,C);
+    }
+
+    @Test
+    public void test4(){
+//        IntList A = new IntList(30,null);
+//        A=new IntList(20,A);
+//        A=new IntList(10,A);
+//
+//        IntList B = new IntList(60,null);
+//        B=new IntList(50,B);
+//        B=new IntList(40,A);
+
+        IntList A = IntList.of(1, 2, 3);
+        IntList B = IntList.of(4, 5, 6);
+        IntList c=A;
+        System.out.println("c was assigned by A = "+c);
+        while (c.rest!=null){
+            c=c.rest;
+        }
+        System.out.println("after loop c = "+c);
+        c.rest=B;
+        System.out.println(c);
+        System.out.println(A);
+    }
 }
