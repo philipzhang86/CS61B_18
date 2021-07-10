@@ -78,34 +78,38 @@ public class LinkedListDeque<T> {
         }
     }
 
-    public StuffNode removeFirst() {
-        if (nodeIsNull(front)) {
+    public StuffNode removeFirst(){
+        if(nodeIsNull(front)) {
             tail = null;
             return null;
         }
-        StuffNode temp = front;
-        front = front.next;
 
-        if (front != null) {
-            front.pre = null;
+        StuffNode temp=front;
+        if(front==tail){
+            front=tail=null;
+        }
+        else {
+            front=front.next;
+            front.pre=null;
         }
         size--;
         return temp;
     }
 
     public StuffNode removeLast() {
-        if (nodeIsNull(tail)) {
+        if(isEmpty()) {
             return null;
         }
-        StuffNode temp = tail;
-        if (tail.pre == null) {
-            tail = null;
-        } else {
-            tail.pre.next = null;
-            tail = tail.pre;
+
+        StuffNode temp=tail;
+        if(tail==front){
+            tail=front=null;
+        }
+        else {
+            tail=tail.pre;
+            tail.next=null;
         }
         size--;
-
         return temp;
     }
 
