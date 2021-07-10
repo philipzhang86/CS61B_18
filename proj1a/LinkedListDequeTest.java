@@ -1,3 +1,6 @@
+import org.junit.Assert;
+import org.junit.Test;
+
 /** Performs some basic linked list tests. */
 public class LinkedListDequeTest {
 	
@@ -35,7 +38,7 @@ public class LinkedListDequeTest {
 	  * && is the "and" operation. */
 	public static void addIsEmptySizeTest() {
 		System.out.println("Running add/isEmpty/Size test.");
-		System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
+		//System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
 		LinkedListDeque<String> lld1 = new LinkedListDeque<String>();
 
 		boolean passed = checkEmpty(true, lld1.isEmpty());
@@ -64,7 +67,7 @@ public class LinkedListDequeTest {
 
 		System.out.println("Running add/remove test.");
 
-		System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
+		//System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
 
 		LinkedListDeque<Integer> lld1 = new LinkedListDeque<Integer>();
 		// should be empty
@@ -86,5 +89,23 @@ public class LinkedListDequeTest {
 		System.out.println("Running tests.\n");
 		addIsEmptySizeTest();
 		addRemoveTest();
+	}
+
+	@Test
+	public void random(){
+		LinkedListDeque<Integer> L = new LinkedListDeque<Integer>();
+
+		L.addFirst(0);
+		L.addFirst(1);
+		L.removeLast();
+		L.addFirst(3);
+		L.addFirst(4);
+		L.removeFirst();
+		L.addFirst(6);
+		L.addFirst(7);
+		L.removeFirst();
+		L.addFirst(9);
+
+		Assert.assertEquals(4,L.size());
 	}
 } 
