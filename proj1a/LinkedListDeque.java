@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class LinkedListDeque<T> {
     private StuffNode front;
@@ -111,19 +110,14 @@ public class LinkedListDeque<T> {
         return temp.item;
     }
 
-    public T get(int index) {
-        if (nodeIsNull(front) || index > size - 1 || index < 0) {
+    public T get(int index){
+        if(nodeIsNull(front)||index> size-1||index<0)
             return null;
+        StuffNode temp=front;
+        for(int i=0;i<index;i++){
+            temp=temp.next;
         }
-        List<StuffNode> elements = new ArrayList<>();
-        StuffNode temp = front;
-        int i = 0;
-        while (temp != null) {
-            elements.add(temp);
-            temp = temp.next;
-            i++;
-        }
-        return elements.get(index).item;
+        return temp.item;
     }
 
     public T getRecursive(int index) {
