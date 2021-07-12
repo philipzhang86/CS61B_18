@@ -15,11 +15,11 @@ public class ArrayDeque<T> {
         return tail == front && capacity <= 8;
     }
 
-    private void resize(int capacity) {
-        T[] newArray = (T[]) new Object[capacity];
+    private void resize(int newCapacity) {
+        T[] newArray = (T[]) new Object[newCapacity];
         System.arraycopy(items, 0, newArray, 0, size);
         items = newArray;
-        this.capacity = capacity;
+        capacity = newCapacity;
     }
 
     public void addFirst(T n) {
