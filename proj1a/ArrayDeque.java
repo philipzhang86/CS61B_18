@@ -11,14 +11,6 @@ public class ArrayDeque<T> {
         size = 0;
     }
 
-    public T getFirst() {
-        return items[front];
-    }
-
-    public T getLast() {
-        return items[tail - 1];
-    }
-
     public boolean isEmpty() {
         return tail == front && capacity <= 8;
     }
