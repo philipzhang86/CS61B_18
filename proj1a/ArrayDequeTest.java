@@ -2,8 +2,8 @@ import org.junit.Test;
 
 public class ArrayDequeTest {
     @Test
-    public void testAddLast(){
-        ArrayDeque<Integer> target=new ArrayDeque<>();
+    public void testAddLast() {
+        ArrayDeque<Integer> target = new ArrayDeque<>();
         target.addLast(1);
         target.addLast(4);
         target.addLast(7);
@@ -31,6 +31,7 @@ public class ArrayDequeTest {
         target.printDeque();
 
     }
+
     @Test
     public void testResizeNull() {
         ArrayDeque<Integer> target = new ArrayDeque<>();

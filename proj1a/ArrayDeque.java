@@ -31,8 +31,9 @@ public class ArrayDeque<T> {
     }
 
     public void addFirst(T n) {
-        if (n == null)
+        if (n == null) {
             return;
+        }
 
         items[front = (front - 1) & (items.length - 1)] = n;
 
@@ -43,13 +44,15 @@ public class ArrayDeque<T> {
     }
 
     public void addLast(T n) {
-        if (n == null)
+        if (n == null) {
             return;
+        }
 
         items[tail] = n;
 
-        if ((tail = (tail + 1) & (items.length - 1)) == front)
+        if ((tail = (tail + 1) & (items.length - 1)) == front) {
             doubleCapacity();
+        }
         size++;
     }
 
@@ -85,8 +88,6 @@ public class ArrayDeque<T> {
     }
 
     public T get(int index) {
-        if (isEmpty() || index < 0 || index >= size)
-            return null;
         return items[index];
     }
 
@@ -95,8 +96,9 @@ public class ArrayDeque<T> {
     }
 
     public void printDeque() {
-        if (isEmpty())
+        if (isEmpty()) {
             return;
+        }
 
         if (front < tail) {
             for (int i = 0; i != tail; i++) {
@@ -121,10 +123,10 @@ public class ArrayDeque<T> {
         int r = n - p;
         int newCapacity = n * 2;
 
-        T[] new_Array = (T[]) new Object[newCapacity];
-        System.arraycopy(items, p, new_Array, 0, r);
-        System.arraycopy(items, 0, new_Array, r, p);
-        items = new_Array;
+        T[] newArray = (T[]) new Object[newCapacity];
+        System.arraycopy(items, p, newArray, 0, r);
+        System.arraycopy(items, 0, newArray, r, p);
+        items = newArray;
         front = 0;
         tail = n;
         capacity = newCapacity;
