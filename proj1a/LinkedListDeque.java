@@ -99,7 +99,7 @@ public class LinkedListDeque<T> {
     }
 
     public T get(int index) {
-        if (front == null || index > size - 1 || index < 0){
+        if (front == null || index > size - 1 || index < 0) {
             return null;
         }
         StuffNode temp = front;
