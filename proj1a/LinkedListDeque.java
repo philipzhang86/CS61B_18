@@ -15,12 +15,12 @@ public class LinkedListDeque<T> {
         return size;
     }
 
-    public StuffNode getFront() {
-        return front;
+    public T getFront() {
+        return front.item;
     }
 
-    public StuffNode getTail() {
-        return tail;
+    public T getTail() {
+        return tail.item;
     }
 
     public boolean isEmpty() {
@@ -70,7 +70,7 @@ public class LinkedListDeque<T> {
 
         while (temp != null) {
             if (nodeIsNull(temp.next)) {
-                System.out.print(temp.item+"\n");
+                System.out.print(temp.item);
             } else {
                 System.out.print(temp.item + " ");
             }
@@ -78,42 +78,40 @@ public class LinkedListDeque<T> {
         }
     }
 
-    public StuffNode removeFirst(){
-        if(nodeIsNull(front)) {
+    public T removeFirst() {
+        if (nodeIsNull(front)) {
             tail = null;
             return null;
         }
 
-        StuffNode temp=front;
-        if(front==tail){
-            front=tail=null;
-        }
-        else {
-            front=front.next;
-            front.pre=null;
+        StuffNode temp = front;
+        if (front == tail) {
+            front = tail = null;
+        } else {
+            front = front.next;
+            front.pre = null;
         }
         size--;
-        return temp;
+        return temp.item;
     }
 
-    public StuffNode removeLast() {
-        if(isEmpty()) {
+    public T removeLast() {
+        if (isEmpty()) {
             return null;
         }
 
-        StuffNode temp=tail;
-        if(tail==front){
-            tail=front=null;
-        }
-        else {
-            tail=tail.pre;
-            tail.next=null;
+        StuffNode temp = tail;
+        if (tail == front) {
+            tail = front = null;
+        } else {
+            tail = tail.pre;
+            tail.next = null;
         }
         size--;
-        return temp;
+        return temp.item;
     }
 
-    public StuffNode get(int index) {
+    public T get(int index) {
         if (nodeIsNull(front) || index > size - 1 || index < 0) {
             return null;
         }
@@ -125,17 +123,17 @@ public class LinkedListDeque<T> {
             temp = temp.next;
             i++;
         }
-        return elements.get(index);
+        return elements.get(index).item;
     }
 
-    public StuffNode getRecursive(int index) {
+    public T getRecursive(int index) {
         if (nodeIsNull(front) || index > size - 1 || index < 0) {
             return null;
         }
         if (index == 0) {
-            return front;
+            return front.item;
         }
-        return new StuffNode(front.next.get(index - 1));
+        return new StuffNode(front.next.get(index - 1)).item;
     }
 
     private class StuffNode {
