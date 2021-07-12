@@ -26,7 +26,6 @@ public class ArrayDeque<T> {
         if (n == null) {
             return;
         }
-
         items[front = (front - 1) & (items.length - 1)] = n;
 
         if (front == tail) {
