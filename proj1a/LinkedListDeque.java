@@ -1,5 +1,3 @@
-
-
 public class LinkedListDeque<T> {
     private StuffNode front;
     private StuffNode tail;
@@ -110,12 +108,12 @@ public class LinkedListDeque<T> {
         return temp.item;
     }
 
-    public T get(int index){
-        if(nodeIsNull(front)||index> size-1||index<0)
+    public T get(int index) {
+        if (nodeIsNull(front) || index > size - 1 || index < 0)
             return null;
-        StuffNode temp=front;
-        for(int i=0;i<index;i++){
-            temp=temp.next;
+        StuffNode temp = front;
+        for (int i = 0; i < index; i++) {
+            temp = temp.next;
         }
         return temp.item;
     }
