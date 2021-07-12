@@ -1,5 +1,4 @@
-import org.junit.Assert;
-import org.junit.Test;
+
 
 /** Performs some basic linked list tests. */
 public class LinkedListDequeTest {
@@ -91,21 +90,4 @@ public class LinkedListDequeTest {
 		addRemoveTest();
 	}
 
-	@Test
-	public void random(){
-		LinkedListDeque<Integer> L = new LinkedListDeque<Integer>();
-
-		L.addFirst(0);
-		L.addFirst(1);
-		L.removeLast();
-		L.addFirst(3);
-		L.addFirst(4);
-		L.removeFirst();
-		L.addFirst(6);
-		L.addFirst(7);
-		L.removeFirst();
-		L.addFirst(9);
-
-		Assert.assertEquals(4,L.size());
-	}
 } 

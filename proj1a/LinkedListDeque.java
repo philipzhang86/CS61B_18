@@ -70,7 +70,7 @@ public class LinkedListDeque<T> {
 
         while (temp != null) {
             if (nodeIsNull(temp.next)) {
-                System.out.print(temp.item);
+                System.out.print(temp.item+"\n");
             } else {
                 System.out.print(temp.item + " ");
             }
