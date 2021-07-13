@@ -1,85 +1,57 @@
 public class ArrayDeque<T> {
-    private int capacity = 8;
-    private int size;
-    private int front;
-    private int tail;
-    private T[] items;
-
+    public T[] items;
+    public int size;
+    public int front;
+    public int tail;
 
     public ArrayDeque() {
-        items = (T[]) new Object[capacity];
+        items = (T[]) new Object[8];
+        front = 0;
+        tail = 1;
         size = 0;
     }
 
+    private int addOne(int a) { //正常往后加
+        return (a + 1) % items.length;
+    }
+
+    private int subOne(int a) {
+        return (a - 1 + items.length) % items.length;// 0前面再加 即刻变成index7   //不断往前加
+        //7-1+8=>14 % 8 =>6 再往前就 下一个index为6
+    }
+
+    public void resize(int length) {
+        T[] newItems = (T[]) new Object[length];
+        int oldIndex = addOne(front);
+        System.arraycopy(items, 0, newItems, 0, size);
+        items = newItems;
+        //原数组0~7复制到长度为16的新数组，那么新数组的头就是index15
+        front = items.length - 1;
+        tail = size;//新数组的尾就从index 8开始，因为0~7已经有元素了
+    }
+
+    public void addFirst(T item) {
+        if (size == items.length) {
+            resize(size * 2);
+        }
+
+        items[front] = item;
+        front = subOne(front);
+        size++;
+    }
+
+    public void addLast(T item) {
+        if (size == items.length) {
+            resize(size * 2);
+        }
+
+        items[tail] = item;
+        tail = addOne(tail);
+        size++;
+    }
+
     public boolean isEmpty() {
-        return tail == front && capacity <= 8;
-    }
-
-    private void resize(int newCapacity) {
-        T[] newArray = (T[]) new Object[newCapacity];
-        System.arraycopy(items, 0, newArray, 0, size);
-        items = newArray;
-        capacity = newCapacity;
-    }
-
-    public void addFirst(T n) {
-        if (n == null) {
-            return;
-        }
-        items[front = (front - 1) & (items.length - 1)] = n;
-
-        if (front == tail) {
-            doubleCapacity();
-        }
-        size++;
-    }
-
-    public void addLast(T n) {
-        if (n == null) {
-            return;
-        }
-
-        items[tail] = n;
-
-        if ((tail = (tail + 1) & (items.length - 1)) == front) {
-            doubleCapacity();
-        }
-        size++;
-    }
-
-    public T removeFirst() {
-        if (isEmpty()) {
-            System.out.println("Deque is empty, you can't remove elements");
-            return null;
-        }
-        T result = items[front];
-        items[front] = null;
-        front = (front + 1) & (items.length - 1);
-        size--;
-        if (isLowUsageRate()) {
-            resize((int) (capacity * 0.5));
-        }
-        return result;
-    }
-
-    public T removeLast() {
-        if (isEmpty()) {
-            System.out.println("Deque is empty, you can't remove elements");
-            return null;
-        }
-        int t = (tail - 1) & (items.length - 1);
-        T result = items[t];
-        items[t] = null;
-        tail = t;
-        size--;
-        if (isLowUsageRate()) {
-            resize((int) (capacity * 0.5));
-        }
-        return result;
-    }
-
-    public T get(int index) {
-        return items[index];
+        return size == 0;
     }
 
     public int size() {
@@ -87,43 +59,48 @@ public class ArrayDeque<T> {
     }
 
     public void printDeque() {
-        if (isEmpty()) {
-            return;
-        }
-
-        if (front < tail) {
-            for (int i = 0; i != tail; i++) {
-                System.out.print(items[i] + " ");
-            }
-        }
-
-        if (front > tail) {
-            for (int i = front; i <= items.length - 1; i++) {
-                System.out.print(items[i] + " ");
-            }
-            for (int i = 0; i < tail; i++) {
-                System.out.print(items[i] + " ");
-            }
+        //addFirst加完之后，front 指针已经走到items.length-1,所以要往前移一格
+        int i = addOne(front);
+        for (int j = 0; j < size; j++) {
+            System.out.print(items[i] + " ");
+            i = addOne(i);//print完之后继续指针移到下一个格
         }
     }
 
-    private void doubleCapacity() {
-        assert front == tail;
-        int p = front;
-        int n = items.length;
-        int r = n - p;
-        int newCapacity = n * 2;
-
-        T[] newArray = (T[]) new Object[newCapacity];
-        System.arraycopy(items, p, newArray, 0, r);
-        System.arraycopy(items, 0, newArray, r, p);
-        items = newArray;
-        front = 0;
-        tail = n;
-        capacity = newCapacity;
+    public T removeFirst() {
+        if (size == 0) {
+            return null;
+        }
+        T a = items[addOne(front)];
+        items[addOne(front)] = null;
+        front = addOne(front);
+        size--;
+        if (items.length >= 16 && size < (items.length / 4)) {
+            resize(items.length / 2);
+        }
+        return a;
     }
 
-    private boolean isLowUsageRate() {
-        return capacity >= 16 && size() / (double) capacity < 0.25;
+    public T removeLast() {
+        if (size == 0) {
+            return null;
+        }
+        T a = items[subOne(tail)];
+        items[subOne(tail)] = null;
+        tail = subOne(tail);
+        size--;
+        if (items.length >= 16 && size < (items.length / 4)) {
+            resize(items.length / 2);
+        }
+        return a;
+    }
+
+
+    public T get(int index) {
+        if (index >= size) {
+            return null;
+        }
+        int start = addOne(front);
+        return items[(start + index) % items.length];
     }
 }
