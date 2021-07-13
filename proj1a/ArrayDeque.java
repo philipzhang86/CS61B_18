@@ -101,7 +101,7 @@ public class ArrayDeque<T> {
 
 
     public T get(int index) {
-        if (index >= size) {
+        if (isEmpty() ||index<0 || index>=size) {
             return null;
         }
         int start = addOne(front);
