@@ -59,6 +59,9 @@ public class ArrayDeque<T> {
     }
 
     public void printDeque() {
+        if (isEmpty()) {
+            return;
+        }
         //addFirst加完之后，front 指针已经走到items.length-1,所以要往前移一格
         int i = addOne(front);
         for (int j = 0; j < size; j++) {
@@ -68,7 +71,8 @@ public class ArrayDeque<T> {
     }
 
     public T removeFirst() {
-        if (size == 0) {
+        if (isEmpty()) {
+            System.out.println("Deque is empty, you can't remove elements");
             return null;
         }
         T a = items[addOne(front)];
@@ -82,7 +86,8 @@ public class ArrayDeque<T> {
     }
 
     public T removeLast() {
-        if (size == 0) {
+        if (isEmpty()) {
+            System.out.println("Deque is empty, you can't remove elements");
             return null;
         }
         T a = items[subOne(tail)];
