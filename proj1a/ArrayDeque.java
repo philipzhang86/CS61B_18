@@ -3,7 +3,7 @@ public class ArrayDeque<T> {
     private int size;
     private int front;
     private int tail;
-    private T[] items;
+    public T[] items;
 
 
     public ArrayDeque() {
