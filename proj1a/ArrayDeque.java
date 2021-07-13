@@ -11,13 +11,12 @@ public class ArrayDeque<T> {
         size = 0;
     }
 
-    private int addOne(int a) { //正常往后加
+    private int addOne(int a) {
         return (a + 1) % items.length;
     }
 
     private int subOne(int a) {
-        return (a - 1 + items.length) % items.length ;// 0前面再加 即刻变成index7   //不断往前加
-        //7-1+8=>14 % 8 =>6 再往前就 下一个index为6
+        return (a - 1 + items.length) % items.length ;
     }
 
     private void resize(int length) {
@@ -25,9 +24,9 @@ public class ArrayDeque<T> {
         int oldIndex = addOne(front);
         System.arraycopy(items, 0, newItems, 0, size);
         items = newItems;
-        //原数组0~7复制到长度为16的新数组，那么新数组的头就是index15
+
         front = items.length - 1;
-        tail = size; //新数组的尾就从index 8开始，因为0~7已经有元素了
+        tail = size;
     }
 
     public void addFirst(T item) {
@@ -62,11 +61,11 @@ public class ArrayDeque<T> {
         if (isEmpty()) {
             return;
         }
-        //addFirst加完之后，front 指针已经走到items.length-1,所以要往前移一格
+
         int i = addOne(front);
         for (int j = 0; j < size; j++) {
             System.out.print(items[i] + " ");
-            i = addOne(i); //print完之后继续指针移到下一个格
+            i = addOne(i);
         }
     }
 
