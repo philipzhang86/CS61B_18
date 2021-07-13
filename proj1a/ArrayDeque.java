@@ -1,5 +1,4 @@
 public class ArrayDeque<T> {
-    private int capacity = 8;
     private int size;
     private int front;
     private int tail;
@@ -7,19 +6,18 @@ public class ArrayDeque<T> {
 
 
     public ArrayDeque() {
-        items = (T[]) new Object[capacity];
+        items = (T[]) new Object[8];
         size = 0;
     }
 
     public boolean isEmpty() {
-        return tail == front && capacity <= 8;
+        return tail == front && items.length <= 8;
     }
 
     private void resize(int newCapacity) {
         T[] newArray = (T[]) new Object[newCapacity];
         System.arraycopy(items, 0, newArray, 0, size);
         items = newArray;
-        capacity = newCapacity;
     }
 
     public void addFirst(T n) {
@@ -57,7 +55,7 @@ public class ArrayDeque<T> {
         front = (front + 1) & (items.length - 1);
         size--;
         if (isLowUsageRate()) {
-            resize((int) (capacity * 0.5));
+            resize((int) (items.length * 0.5));
         }
         return result;
     }
@@ -73,7 +71,7 @@ public class ArrayDeque<T> {
         tail = t;
         size--;
         if (isLowUsageRate()) {
-            resize((int) (capacity * 0.5));
+            resize((int) (items.length * 0.5));
         }
         return result;
     }
@@ -120,10 +118,9 @@ public class ArrayDeque<T> {
         items = newArray;
         front = 0;
         tail = n;
-        capacity = newCapacity;
     }
 
     private boolean isLowUsageRate() {
-        return capacity >= 16 && size<(double)(items.length*0.25);
+        return items.length >= 16 && size < (items.length * 0.25);
     }
 }
