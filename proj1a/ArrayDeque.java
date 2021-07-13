@@ -124,6 +124,6 @@ public class ArrayDeque<T> {
     }
 
     private boolean isLowUsageRate() {
-        return capacity >= 16 && size() / (double) capacity < 0.25;
+        return capacity >= 16 && size<(double)(items.length*0.25);
     }
 }
