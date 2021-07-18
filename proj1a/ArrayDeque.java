@@ -121,7 +121,7 @@ public class ArrayDeque<T> {
             tail--;
         }
         size--;
-        T temp = items[tail];//指针已经减了，所以才会不用再减
+        T temp = items[tail]; //指针已经减了，所以才会不用再减
         items[tail] = null;
         return temp;
     }
