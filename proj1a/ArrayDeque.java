@@ -117,10 +117,10 @@ public class ArrayDeque<T> {
         int r = n - p;
         int newCapacity = n * 2;
 
-        T[] new_Array = (T[]) new Object[newCapacity];
-        System.arraycopy(items, p, new_Array, 0, r);
-        System.arraycopy(items, 0, new_Array, r, p);
-        items = new_Array;
+        T[] newArray = (T[]) new Object[newCapacity];
+        System.arraycopy(items, p, newArray, 0, r);
+        System.arraycopy(items, 0, newArray, r, p);
+        items = newArray;
         front = 0;
         tail = n;
     }
