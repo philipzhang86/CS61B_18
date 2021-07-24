@@ -22,12 +22,5 @@ public class TestPalindrome {
         Assert.assertTrue(actual);
     }
 
-    @Test
-    public void testIsPalindromeOverloading() {
-        CharacterComparator cc = new OffByOne();
-        Assert.assertTrue(palindrome.isPalindrome("ab", cc));
-        Assert.assertTrue(palindrome.isPalindrome("", cc));
-        Assert.assertFalse(palindrome.isPalindrome("abcba", cc));
-        Assert.assertTrue(palindrome.isPalindrome("gdseh", cc));
-    }
+
 }
