@@ -11,10 +11,9 @@ public class Palindrome {
     }
 
     public boolean isPalindrome(String word) {
-        Deque<Character> deq = wordToDeque(word);
-
-        for (int i = 0; i < word.length(); i++) {
-            if (!deq.removeLast().equals(word.charAt(i))) {
+        Deque<Character> deque = wordToDeque(word);
+        while (deque.size() > 1) {
+            if (!deque.removeLast().equals(deque.removeFirst())) {
                 return false;
             }
         }
@@ -22,9 +21,9 @@ public class Palindrome {
     }
 
     public boolean isPalindrome(String word, CharacterComparator cc) {
-
-        for (int i = 0; i < word.length() / 2; i++) {
-            if (!cc.equalChars(word.charAt(i), word.charAt(word.length() - 1 - i))) {
+        Deque<Character> deque = wordToDeque(word);
+        while (deque.size() > 1) {
+            if (!cc.equalChars(deque.removeFirst(), deque.removeLast())) {
                 return false;
             }
         }
