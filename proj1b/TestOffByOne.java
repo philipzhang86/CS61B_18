@@ -11,7 +11,9 @@ public class TestOffByOne {
     public void testEqualChars() {
         boolean actural = offByOne.equalChars('a', 'b');
         Assert.assertTrue(actural);
-        Assert.assertTrue(offByOne.equalChars('b', 'c'));
+        Assert.assertTrue(offByOne.equalChars('A', 'B'));
+        Assert.assertTrue(offByOne.equalChars('%', '&'));
+
     }
 
 }
