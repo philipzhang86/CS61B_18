@@ -29,8 +29,8 @@ public class Palindrome {
             return true;
         }
 
-        for(int i = 0; i < word.length()/2; i++) {
-            if(!cc.equalChars(word.charAt(i),word.charAt(word.length() -1 -i))){
+        for (int i = 0; i < word.length() / 2; i++) {
+            if (!cc.equalChars(word.charAt(i), word.charAt(word.length() - 1 - i))) {
                 return false;
             }
         }
