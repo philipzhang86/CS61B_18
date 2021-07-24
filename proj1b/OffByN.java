@@ -1,8 +1,8 @@
 public class OffByN implements CharacterComparator {
-    private int index;
+    private final int index;
 
     public OffByN(int N) {
-        index = N;
+        this.index = N;
     }
 
     @Override
