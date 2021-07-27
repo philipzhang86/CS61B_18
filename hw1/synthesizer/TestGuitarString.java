@@ -2,17 +2,17 @@ package synthesizer;
 
 /* Since this test is part of a package, we have to import the package version of StdAudio. */
 /* Don't worry too much about this, we'll get there in due time. */
-import edu.princeton.cs.introcs.StdAudio;
 
+import edu.princeton.cs.algs4.StdAudio;
+import org.junit.Assert;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /** Tests the GuitarString class.
  *  @author Josh Hug
  */
 
 public class TestGuitarString {
-/*    @Test
+    @Test
     public void testPluckTheAString() {
         double CONCERT_A = 440.0;
         GuitarString aString = new GuitarString(CONCERT_A);
@@ -21,13 +21,12 @@ public class TestGuitarString {
             StdAudio.play(aString.sample());
             aString.tic();
         }
-    }*/
+    }
 
-/*
     @Test
     public void testTic() {
         // Create a GuitarString of frequency 11025, which
-        // is an ArrayRingBuffer of length 4. 
+        // is an ArrayRingBuffer of length 4.
         GuitarString s = new GuitarString(11025);
         s.pluck();
 
@@ -35,7 +34,7 @@ public class TestGuitarString {
         double s1 = s.sample();
         s.tic();
         double s2 = s.sample();
-        s.tic(); 
+        s.tic();
         double s3 = s.sample();
         s.tic();
         double s4 = s.sample();
@@ -49,10 +48,9 @@ public class TestGuitarString {
         // Check that new sample is correct, using tolerance of 0.001.
         // See JUnit documentation for a description of how tolerances work
         // for assertEquals(double, double)
-        assertEquals(expected, s5, 0.001);
+        Assert.assertEquals(expected, s5, 0.001);
 
     }
-*/
 
     /** Calls tests for GuitarString. */
     public static void main(String[] args) {
