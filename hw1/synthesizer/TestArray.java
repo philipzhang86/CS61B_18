@@ -21,9 +21,10 @@ public class TestArray {
     @Test
     public void testIterator() {
         ArrayRingBuffer<Integer> array = new ArrayRingBuffer<>(100);
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 50; i++) {
             array.enqueue(i);
         }
+        System.out.println("Fillcount = "+array.fillCount);
         for (Integer i : array) {
             System.out.println(i);
         }
