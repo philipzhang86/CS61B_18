@@ -12,12 +12,10 @@ public class TestArray {
             array.enqueue(i);
         }
         Assert.assertEquals(0, (long) array.dequeue());
-        System.out.println(array);
         System.out.println(array.peek());
         Assert.assertEquals(1, (long) array.peek());
         Assert.assertEquals(1, (long) array.dequeue());
         Assert.assertEquals(2, (long) array.peek());
-        System.out.println(array);
     }
 
     @Test
@@ -26,7 +24,6 @@ public class TestArray {
         for (int i = 0; i < 100; i++) {
             array.enqueue(i);
         }
-        System.out.println(array);
         for (Integer i : array) {
             System.out.println(i);
         }
