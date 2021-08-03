@@ -47,11 +47,11 @@ public class Game {
         // TODO: Fill out this method to run the game using the input passed in,
         // and return a 2D tile representation of the world that would have been
         // drawn if the same inputs had been given to playWithKeyboard().
-        long seed =Long.parseLong(input);
+        long seed = Long.parseLong(input);
         //long seed = Long.parseLong(input.replaceAll("[^0-9]*$", ""));
         TERenderer ter = new TERenderer();
-        ter.initialize(WIDTH,HEIGHT);
-        MapGenerator map=new MapGenerator(WIDTH,HEIGHT,seed);
+        ter.initialize(WIDTH, HEIGHT);
+        MapGenerator map = new MapGenerator(WIDTH, HEIGHT, seed);
         return map.mapGenerator();
     }
 }
