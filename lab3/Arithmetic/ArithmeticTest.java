@@ -1,3 +1,4 @@
+import org.junit.Assert;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -23,7 +24,7 @@ public class ArithmeticTest {
     @Test 
     public void testSum() {
 
-        assertEquals(11, Arithmetic.sum(5, 6));
+        Assert.assertEquals(11, Arithmetic.sum(5, 6));
         assertEquals(-1, Arithmetic.sum(5, -6));
         assertEquals(-6, Arithmetic.sum(0, -6));
         assertEquals(0, Arithmetic.sum(6, -6));

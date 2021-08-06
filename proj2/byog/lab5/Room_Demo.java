@@ -1,10 +1,11 @@
+/*
 package byog.lab5;
 
-import byog.Core.Room;
 import byog.TileEngine.TERenderer;
 import byog.TileEngine.TETile;
 import byog.TileEngine.Tileset;
 
+import javax.swing.text.Position;
 import java.util.HashSet;
 import java.util.Random;
 
@@ -35,26 +36,46 @@ public class Room_Demo {
 
     private void fillWithRoom(){
         for(int i=0;i<50;i++){
-            int x=RANDOM.nextInt(WIDTH);
-            int y=RANDOM.nextInt(HEIGHT);
+            Position p= new Position(RANDOM.nextInt(WIDTH),RANDOM.nextInt(HEIGHT));
+
             int width=RANDOM.nextInt(WIDTH/10)+2;
             int height=RANDOM.nextInt(HEIGHT/5)+2;
 
-            if(y+height+1>=HEIGHT||x+width+1>=WIDTH)
+            if(p.getY()+height+1>=HEIGHT||p.getX()+width+1>=WIDTH)
                 continue;
-            if(isOverLap(x,y,width,height))
+            if(isOverLap(p,width,height))
                 continue;
-            buildRoom(x,y,width,height);
-            rooms.add(new Room(x,y,width,height));
+            buildRoom(p,width,height);
+            //rooms.add(new Room(p,width,height));
         }
     }
 
-    private void buildRoom(int x,int y,int width,int height){
-        //MapGenerator.scanRoom(x, y, width, height, positionOfRoom, world);
+    private void buildRoom(Position p ,int width,int height){
+        int x=p.getX();
+        int y=p.getY();
+        scanRoom(x, y, width, height, positionOfRoom, world);
     }
 
-    private boolean isOverLap(int x, int y, int width, int height){
+    public static void scanRoom(int x, int y, int width, int height, TETile[][] positionOfRoom, TETile[][] world) {
+        for (int i = x; i <= x + width + 1; i++) {
+            for (int j = y; j <= y + height + 1; j++) {
+                if (i == x || i == x + width + 1 || j == y || j == y + height + 1) {
+                    positionOfRoom[i][j] = Tileset.WALL;
+                    world[i][j] = Tileset.WALL;
+                    continue;
+                }
+                //由于FLOOR和在房间外的迷宫的连通条件相冲突，
+                //所以先在房间内部填GRASS
+                world[i][j] = Tileset.GRASS;
+                positionOfRoom[i][j] = Tileset.GRASS;
+            }
+        }
+    }
+
+    private boolean isOverLap(Position p, int width, int height){
         //+1 is make sure the width and height is exactly match the existing room
+        int x=p.getX();
+        int y=p.getY();
         for (int i=x;i<=x+width+1;i++){
             for (int j=y;j<=y+height+1;j++){
                 if(positionOfRoom[i][j]==Tileset.WALL||positionOfRoom[i][j]==Tileset.GRASS){
@@ -72,9 +93,9 @@ public class Room_Demo {
     }
 
 
-    public int showSetSize(){
-        return rooms.size();
-    }
+//    public int showSetSize(){
+//        return rooms.size();
+//    }
 
 
     public static void main(String[] args) {
@@ -83,6 +104,7 @@ public class Room_Demo {
         Room_Demo room_demo=new Room_Demo();
 
         ter.renderFrame(room_demo.roomGenerator());
-        System.out.println(room_demo.showSetSize());
+        //System.out.println(room_demo.showSetSize());
     }
 }
+*/
