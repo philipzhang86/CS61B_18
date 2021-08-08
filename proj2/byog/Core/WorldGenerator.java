@@ -355,6 +355,7 @@ public class WorldGenerator {
 
     private void fillWithRoom(){
         for(int i=0;i<MAXROOM;i++){
+            //随机出长宽高 用这四个点造room
             int x=RANDOM.nextInt(WIDTH);
             int y=RANDOM.nextInt(HEIGHT);
             int width=RANDOM.nextInt(WIDTH/10)+2;
@@ -375,13 +376,13 @@ public class WorldGenerator {
     private void buildRoom(int x, int y, int width, int height){
         for (int i=x;i<=x+width+1;i++){
             for(int j=y; j<=y+height+1;j++){
-                //顶到room的四边就造墙
+                //以那四个点为基点到room的四边就造墙
                 if (i==x||i==x+width+1||j==y||j==y+height+1){
                     positionOfRoom[i][j]=Tileset.WALL;
                     world[i][j] =Tileset.WALL;
                     continue;
                 }
-                world[i][j]=Tileset.GRASS;
+                world[i][j]=Tileset.GRASS;//room 内铺草， 之后用来打洞、铺floor
                 positionOfRoom[i][j]=Tileset.GRASS;
             }
         }
