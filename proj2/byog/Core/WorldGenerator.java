@@ -4,12 +4,13 @@ import byog.TileEngine.TERenderer;
 import byog.TileEngine.TETile;
 import byog.TileEngine.Tileset;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Random;
 
-public class WorldGenerator {
+public class WorldGenerator implements Serializable {
     private static final long serialVersionUID = 156464981;
     private int WIDTH;
     private int HEIGHT;
