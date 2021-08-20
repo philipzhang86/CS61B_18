@@ -76,7 +76,7 @@ public class MyLinkedList<T> implements Iterable<T>{
         if(index==0){
             Node oldFirst=n;
             //n =new Node(item,oldFirst);
-            n.next =new Node(item,n.next);
+            //n.next =new Node(item,n.next);
         }else {
             insert(item,index-1,n.next);
         }
