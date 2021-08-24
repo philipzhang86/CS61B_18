@@ -20,7 +20,7 @@ public class GrabBag<T> implements Iterable<T> {
         for (int i = 0; i <= 10; i++) {
             grabBag.add(i);
         }
-        for (int i = 8; i >= 0; i--) {
+        for (int i = 3; i >= 0; i--) {
             System.out.println("grab bag random remove = " + grabBag.remove());
         }
         grabBag.add(-1);
@@ -53,16 +53,29 @@ public class GrabBag<T> implements Iterable<T> {
         return deleteKthItem(0);
     }
 
-    public T remove() {
+//    public T remove() {
+//        if (isEmpty()) throw new NoSuchElementException("Grab Bag is empty");
+//        int randomIndex = StdRandom.uniform(0, size());
+//        T item = array[randomIndex];
+//        deleteKthItem(randomIndex);
+//        return item;
+//    }
+
+    //随机Bag下的最优解
+    public T remove(){
         if (isEmpty()) throw new NoSuchElementException("Grab Bag is empty");
         int randomIndex = StdRandom.uniform(0, size());
-        T item = array[randomIndex];
-        deleteKthItem(randomIndex);
-        return item;
+        T randomItem=array[randomIndex];
+        array[randomIndex]=array[size()-1];
+        array[size()-1]=null;
+        N--;
+        if (N > 0 && N == array.length / 4) resize(array.length / 2);
+        return randomItem;
     }
 
+    //一般ArrayList缩容的最优解
     private T deleteKthItem(int index) {
-
+        //if(isEmpty()) throw new NoSuchElementException("Grab Bag is empty");
         T item = array[index];
         // shift all the elements from index  till rear to the left by one
         for (int i = index; i < N - 1; i++) {
